@@ -2,8 +2,9 @@
 
 function create_project () {
     local projects_dir=~/Documents/projects/$1
-    mkdir -p ${projects_dir}/bin && cd $projects_dir
-    touch .gitignore && touch README.md
+    mkdir -p ${projects_dir}/bin 
+    cat ./ignore.template >> ${projects_dir}/.gitignore
+    cd $projects_dir && touch README.md
     git init
     code $projects_dir
 }
