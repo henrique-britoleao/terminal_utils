@@ -1,12 +1,14 @@
 #!/bin/bash
 
+source .labrc
+
 function create_project () {
-    local projects_dir=~/Documents/projects/$1 # TODO: Add config to change root dir 
-    mkdir -p ${projects_dir}/bin 
-    cat ./ignore.template > ${projects_dir}/.gitignore
-    cd $projects_dir && touch README.md
-    git init
-    code $projects_dir
+    local projects_dir=${ROOT_DIR}/$1 # TODO: Add config to change root dir
+    mkdir -v -p $projects_dir/bin # create folder
+    cat ./ignore.template > ${projects_dir}/.gitignore # add gitignore
+    cd $projects_dir && touch README.md # add empty readme
+    git init 
+    code $projects_dir # open code
 }
 
 command=$1
@@ -22,6 +24,7 @@ case $command in
             case "$arg" in
                 "--name") set -- "$@" "-n" ;;
                 "--"*)    echo "illegal option" "$arg"; exit 1;;
+                *)        set -- "$@" "$arg"
             esac
         done
 
