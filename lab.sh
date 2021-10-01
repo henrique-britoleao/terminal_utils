@@ -33,9 +33,11 @@ case $command in
             case "${flag}" in
                 n) 
                     name=${OPTARG}
-                    create_project $name;;
+                    create_project $name
+                    exit 0;;
             esac
         done;;
     
-    open) echo "open";;
+    list) ls ${ROOT_DIR}; exit 0;;
+    open) shift; code ${ROOT_DIR}/$1; exit 0;;
 esac
