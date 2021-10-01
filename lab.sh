@@ -11,6 +11,17 @@ function create_project () {
     code $projects_dir # open code
 }
 
+function usage (){
+    printf "usage: lab command ...\n\n"
+    printf "lab is a tool for creating and managing pytho projects.\n\n"
+    printf "Options:\n\n"
+    printf "positional arguments: \n\n"
+    printf "%-4s %-10s %-30s\n" "" "new" "Create a project in the root dir"
+    printf "%-4s %-10s %-30s\n" "" "list" "List all the projects in the root dir"
+    printf "%-4s %-10s %-30s\n" "" "open" "Opens a project using the code command"
+    printf "%-4s %-10s %-30s\n" "" "help" "Displays a list of available lab commands and their help strings."
+}
+
 command=$1
 
 case $command in
@@ -40,4 +51,5 @@ case $command in
     
     list) ls ${ROOT_DIR}; exit 0;;
     open) shift; code ${ROOT_DIR}/$1; exit 0;;
+    help) usage;;
 esac
