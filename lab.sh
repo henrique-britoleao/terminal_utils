@@ -1,11 +1,13 @@
 #!/bin/bash
 
-source .labrc
+SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+source ${SCRIPT_DIR}/.labrc
 
 function create_project () {
     local projects_dir=${ROOT_DIR}/$1 # TODO: Add config to change root dir
     mkdir -v -p $projects_dir/bin # create folder
-    cat ./ignore.template > ${projects_dir}/.gitignore # add gitignore
+    cat ${SCRIPT_DIR}/ignore.template > ${projects_dir}/.gitignore # add gitignore
     cd $projects_dir && touch README.md # add empty readme
     git init 
     code $projects_dir # open code
