@@ -4,7 +4,7 @@ SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 source ${SCRIPT_DIR}/.labrc
 
-function create_project () {
+function create_project {
     local projects_dir=${ROOT_DIR}/$1 # TODO: Add config to change root dir
     mkdir -v -p $projects_dir/bin # create folder
     cat ${SCRIPT_DIR}/ignore.template > ${projects_dir}/.gitignore # add gitignore
@@ -13,9 +13,9 @@ function create_project () {
     code $projects_dir # open code
 }
 
-function usage (){
+function usage {
     printf "usage: lab command ...\n\n"
-    printf "lab is a tool for creating and managing pytho projects.\n\n"
+    printf "lab is a tool for creating and managing python projects.\n\n"
     printf "Options:\n\n"
     printf "positional arguments: \n\n"
     printf "%-4s %-10s %-30s\n" "" "new" "Create a project in the root dir"
@@ -53,5 +53,6 @@ case $command in
     
     list) ls ${ROOT_DIR}; exit 0;;
     open) shift; code ${ROOT_DIR}/$1; exit 0;;
-    help) usage;;
+    help) usage ; exit 0;;
+    *) echo "lab: Command not found"; usage ; exit 1;;
 esac
