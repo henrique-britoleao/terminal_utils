@@ -6,7 +6,7 @@ source ${SCRIPT_DIR}/.labrc
 
 function create_project {
     local projects_dir=${ROOT_DIR}/$1 # TODO: Add config to change root dir
-    mkdir -v -p $projects_dir/bin # create folder
+    mkdir -v -p $projects_dir/src # create folder
     cat ${SCRIPT_DIR}/ignore.template > ${projects_dir}/.gitignore # add gitignore
     cd $projects_dir && touch README.md # add empty readme
     git init 
