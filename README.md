@@ -1,5 +1,7 @@
 # Project Manager Terminal Utils
 
+![version](https://img.shields.io/badge/version-0.0.1-blue)
+
 This project aims at creating a terminal toolset to facilitate the creation and
 management of python projects. 
 
