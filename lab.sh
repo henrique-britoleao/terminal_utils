@@ -24,6 +24,14 @@ function usage {
     printf "%-4s %-10s %-30s\n" "" "help" "Displays a list of available lab commands and their help strings."
 }
 
+function usage_new {
+    printf "usage: lab new ...\n\n"
+    printf "'new' is a command used to create new data science projects.\n\n"
+    printf "Options:\n\n"
+    printf "required arguments: \n\n"
+    printf "%-4s %-10s %-30s\n" "" "-n/--name" "Name to be assigned to project"
+}
+
 command=$1
 
 case $command in
@@ -45,11 +53,17 @@ case $command in
         do
             case "${flag}" in
                 n) 
-                    name=${OPTARG}
-                    create_project $name
-                    exit 0;;
+                    name=${OPTARG};;
+                *) echo ""; exit 1;;
             esac
-        done;;
+        done
+
+        if [ -z "$name" ]
+        then
+            echo "The argument -n is mandatory"; usage_new ; exit 1
+        else
+            create_project $name; exit 0
+        fi;;
     
     list) ls ${ROOT_DIR}; exit 0;;
     open) shift; code ${ROOT_DIR}/$1; exit 0;;
