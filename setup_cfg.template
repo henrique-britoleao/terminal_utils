@@ -1,0 +1,15 @@
+[metadata]
+name = # package_name
+version = 0.0.0
+author = # Author name
+description = # My package description
+long_description = # My package long description
+license = # My license
+
+[options]
+package_dir=
+    =src
+packages = find:
+
+[options.packages.find]
+where=src

@@ -5,10 +5,15 @@ SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 source ${SCRIPT_DIR}/.labrc
 
 function create_project {
-    local projects_dir=${ROOT_DIR}/$1 # TODO: Add config to change root dir
+    local projects_dir=${ROOT_DIR}/$1 
     mkdir -v -p $projects_dir/src # create folder
-    cat ${SCRIPT_DIR}/ignore.template > ${projects_dir}/.gitignore # add gitignore
-    cd $projects_dir && touch README.md # add empty readme
+    # add gitignore
+    cat ${SCRIPT_DIR}/ignore.template > ${projects_dir}/.gitignore 
+    # add setup files
+    cat ${SCRIPT_DIR}/pyproject_toml.template > ${projects_dir}/pyproject.toml
+    cat ${SCRIPT_DIR}/setup_cfg.template > ${projects_dir}/setup.cfg
+    # add empty readme
+    cd $projects_dir && touch README.md 
     git init 
     code $projects_dir # open code
 }
